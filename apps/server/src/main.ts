@@ -7,9 +7,12 @@ import { Logger, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app.module';
+import { UserEventsService } from './resources/user-events/user-events.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const eventsService = app.get(UserEventsService);
+  await eventsService.initializeDatabase();
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   app.enableVersioning({

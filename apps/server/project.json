@@ -13,7 +13,10 @@
         "outputPath": "dist/apps/server",
         "main": "apps/server/src/main.ts",
         "tsConfig": "apps/server/tsconfig.app.json",
-        "assets": ["apps/server/src/assets"],
+        "assets": [
+          "apps/server/src/assets",
+          "apps/server/src/initial_data.json"
+        ],
         "webpackConfig": "apps/server/webpack.config.js",
         "generatePackageJson": true
       },
@@ -33,6 +36,15 @@
       "configurations": {
         "production": {
           "buildTarget": "server:build:production"
+        }
+      }
+    },
+    "repl": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "server:build",
+        "buildTargetOptions": {
+          "main": "apps/server/src/repl.ts"
         }
       }
     },

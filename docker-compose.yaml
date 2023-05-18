@@ -8,6 +8,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: nir
       MONGO_INITDB_ROOT_PASSWORD: nir
+      MONGO_INITDB_DATABASE: mydb
+
     volumes:
       - db:/data/db
     ports:
@@ -27,12 +29,12 @@ services:
     ports:
       - "3333:3333"
 
-  client:
-    image: react-app
-    build: 
-      dockerfile: ./client.Dockerfile
-    ports:
-      - "4200:4200"
+  # client:
+  #   image: react-app
+  #   build: 
+  #     dockerfile: ./client.Dockerfile
+  #   ports:
+  #     - "4200:4200"
 
 volumes:
   db:

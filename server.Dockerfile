@@ -2,18 +2,10 @@ FROM node:16
 
 WORKDIR /usr/src/app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
+COPY . .
 
-ADD nx.json /usr/src/app/
-
-ADD tsconfig.base.json /usr/src/app/
-
-ADD apps/server /usr/src/app/apps/server
-
-RUN npm install
+RUN npm ci
+RUN npm cache clean --force
 
 RUN npx nx build server
 
