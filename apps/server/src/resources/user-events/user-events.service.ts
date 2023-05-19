@@ -40,6 +40,17 @@ export class UserEventsService {
     };
     results.length = limit; // removing the extra item from the result
 
+    // return new Promise((res) => {
+    //   setTimeout(
+    //     () =>
+    //       res({
+    //         totalCount,
+    //         results,
+    //         next,
+    //       }),
+    //     1500
+    //   );
+    // });
     return {
       totalCount,
       results,

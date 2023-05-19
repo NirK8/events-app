@@ -31,6 +31,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          borderBottom: '2px solid #3D4752',
+        },
+      },
+    },
   },
 });
 

@@ -1,1 +1,1 @@
-export type EventsQueryKey = [string, number];
+export type EventsQueryKey = [string, number, number];
