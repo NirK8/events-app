@@ -20,6 +20,11 @@ async function bootstrap() {
       transformOptions: { enableImplicitConversion: true },
     })
   );
+  app.enableCors({
+    origin: '*',
+    preflightContinue: false,
+    allowedHeaders: '*',
+  });
   app.setGlobalPrefix(globalPrefix);
   app.enableVersioning({
     type: VersioningType.URI,
