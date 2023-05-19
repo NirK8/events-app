@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserEventDto } from './dto/create-user-event.dto';
-import { UpdateUserEventDto } from './dto/update-user-event.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { UserEvent } from './schemas/user-event.schema';
 import { Model } from 'mongoose';
 import { readFile } from 'fs/promises';
+import { Event, ApiResponse } from '@events-app/types';
+
+import { UserEvent } from './schemas/user-event.schema';
 
 @Injectable()
 export class UserEventsService {
@@ -27,23 +27,23 @@ export class UserEventsService {
     }
   }
 
-  create(createUserEventDto: CreateUserEventDto) {
-    return 'This action adds a new userEvent';
-  }
+  async findAll(skip: number, limit: number): Promise<ApiResponse<Event>> {
+    const totalCount = await this.userEventsModel.countDocuments().exec();
+    const results: Event[] = await this.userEventsModel
+      .find()
+      .skip(skip)
+      .limit(limit + 1)
+      .exec();
+    const next = results[limit] && {
+      skip: Number(limit) + 1, // assigning the value of limit+1 to "next" in case there's an item in that index
+      limit,
+    };
+    results.length = limit; // removing the extra item from the result
 
-  findAll() {
-    return `This action returns all userEvents`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} userEvent`;
-  }
-
-  update(id: number, updateUserEventDto: UpdateUserEventDto) {
-    return `This action updates a #${id} userEvent`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} userEvent`;
+    return {
+      totalCount,
+      results,
+      next,
+    };
   }
 }

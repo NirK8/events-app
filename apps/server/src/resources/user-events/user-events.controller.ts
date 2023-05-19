@@ -1,46 +1,18 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
+import { Event, ApiResponse } from '@events-app/types';
 
 import { UserEventsService } from './user-events.service';
-import { CreateUserEventDto } from './dto/create-user-event.dto';
-import { UpdateUserEventDto } from './dto/update-user-event.dto';
+import { PaginationDto } from './dto/search-query.dto';
 
 @Controller('user-events')
 export class UserEventsController {
   constructor(private readonly userEventsService: UserEventsService) {}
 
-  @Post()
-  create(@Body() createUserEventDto: CreateUserEventDto) {
-    return this.userEventsService.create(createUserEventDto);
-  }
-
   @Get()
-  findAll() {
-    return this.userEventsService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userEventsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateUserEventDto: UpdateUserEventDto
-  ) {
-    return this.userEventsService.update(+id, updateUserEventDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userEventsService.remove(+id);
+  async findAll(
+    @Query() paginationQuery: PaginationDto
+  ): Promise<ApiResponse<Event>> {
+    const { skip, limit } = paginationQuery;
+    return this.userEventsService.findAll(Math.max(0, skip), limit);
   }
 }

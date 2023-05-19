@@ -20,3 +20,22 @@ export interface User {
   name: string;
   email: string;
 }
+
+export interface Event {
+  user: User;
+  os: OS;
+  eventType: EventType;
+  severity: SeveretyLevel;
+  time: string;
+}
+
+export interface Pagination {
+  skip: number;
+  limit: number;
+}
+
+export type ApiResponse<T = unknown> = {
+  results: T[];
+  totalCount: number;
+  next?: Pagination;
+};

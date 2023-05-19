@@ -3,7 +3,7 @@
  * This is only a minimal backend to get started.
  */
 
-import { Logger, VersioningType } from '@nestjs/common';
+import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app.module';
@@ -14,6 +14,12 @@ async function bootstrap() {
   const eventsService = app.get(UserEventsService);
   await eventsService.initializeDatabase();
   const globalPrefix = 'api';
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    })
+  );
   app.setGlobalPrefix(globalPrefix);
   app.enableVersioning({
     type: VersioningType.URI,
