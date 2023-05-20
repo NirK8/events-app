@@ -28,12 +28,9 @@ const EventsPage: FC = () => {
   return (
     <Box
       sx={{
-        width: 'auto',
         borderRadius: '8px',
         display: 'flex',
         justifyContent: 'center',
-        height: '100vh',
-        boxSizing: 'border-box',
         padding: '1rem',
       }}
     >
