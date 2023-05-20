@@ -1,9 +1,10 @@
-export type EventType =
-  | 'openBrowser'
-  | 'logout'
-  | 'login'
-  | 'fileDownload'
-  | 'fileUpload';
+export enum EventType {
+  OPEN_BROWSER = 'openBrowser',
+  LOGOUT = 'logout',
+  LOGIN = 'login',
+  FILE_DOWNLOAD = 'fileDownload',
+  FILE_UPLOAD = 'fileUpload',
+}
 
 export enum OS {
   WINDOWS = 'windows',

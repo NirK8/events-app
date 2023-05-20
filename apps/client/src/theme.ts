@@ -47,12 +47,14 @@ const theme = createTheme({
     },
     MuiTableRow: {
       styleOverrides: {
-        root: {
+        root: ({ theme }) => ({
           borderBottom: '2px solid #3D4752',
-          'th:first-of-type': {
-            paddingLeft: '5rem',
+          [theme.breakpoints.up('md')]: {
+            'th:first-of-type': {
+              paddingLeft: '5rem',
+            },
           },
-        },
+        }),
       },
     },
     MuiTablePagination: {

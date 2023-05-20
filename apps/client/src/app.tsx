@@ -1,5 +1,4 @@
 import { QueryClientProvider, QueryClient } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import { GlobalStyles, ThemeProvider } from '@mui/material';
 
 import theme, { globalStyles } from './theme';
@@ -14,7 +13,6 @@ export function App() {
         <GlobalStyles styles={globalStyles} />
         <EventsPage />
       </ThemeProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

@@ -31,6 +31,7 @@ export class UserEventsService {
     const totalCount = await this.userEventsModel.countDocuments().exec();
     const results: Event[] = await this.userEventsModel
       .find()
+      .sort({ time: -1 })
       .skip(skip)
       .limit(limit + 1)
       .exec();
@@ -40,17 +41,6 @@ export class UserEventsService {
     };
     results.length = limit; // removing the extra item from the result
 
-    // return new Promise((res) => {
-    //   setTimeout(
-    //     () =>
-    //       res({
-    //         totalCount,
-    //         results,
-    //         next,
-    //       }),
-    //     1500
-    //   );
-    // });
     return {
       totalCount,
       results,

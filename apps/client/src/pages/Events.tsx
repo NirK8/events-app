@@ -8,13 +8,9 @@ import { getEvents } from '../utils';
 const EventsPage: FC = () => {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
-  const { data, isLoading } = useQuery(
-    ['events', page, rowsPerPage],
-    getEvents,
-    {
-      keepPreviousData: true,
-    }
-  );
+  const { data } = useQuery(['events', page, rowsPerPage], getEvents, {
+    keepPreviousData: true,
+  });
 
   const onPageChanged = (newPage: number) => {
     setPage(newPage);
@@ -39,7 +35,6 @@ const EventsPage: FC = () => {
         page={page}
         rowsPerPage={rowsPerPage}
         totalCount={data?.totalCount || 0}
-        isLoading={isLoading}
         onPageChanged={onPageChanged}
         onRowsPerPageChanged={onRowsPerPageChanged}
       />
