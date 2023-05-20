@@ -16,11 +16,9 @@ export const getEvents: QueryFunction<
   const rowsPerPage = queryKey[2] || 5;
   const limit = rowsPerPage;
   const skip = page * limit;
-  const response = await axios.get<ApiResponse<Event>>('user-events', {
-    params: {
-      skip,
-      limit,
-    },
+  const response = await axios.post<ApiResponse<Event>>('user-events', {
+    skip,
+    limit,
   });
   return response.data;
 };

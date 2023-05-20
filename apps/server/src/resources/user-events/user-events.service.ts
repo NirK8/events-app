@@ -5,6 +5,7 @@ import { readFile } from 'fs/promises';
 import { Event, ApiResponse } from '@events-app/types';
 
 import { UserEvent } from './schemas/user-event.schema';
+import { PaginationDto } from './dto/search-query.dto';
 
 @Injectable()
 export class UserEventsService {
@@ -27,10 +28,18 @@ export class UserEventsService {
     }
   }
 
-  async findAll(skip: number, limit: number): Promise<ApiResponse<Event>> {
+  async findAll({
+    skip,
+    limit,
+    eventTypes,
+  }: PaginationDto): Promise<ApiResponse<Event>> {
     const totalCount = await this.userEventsModel.countDocuments().exec();
     const results: Event[] = await this.userEventsModel
-      .find()
+      .find({
+        eventType: {
+          $in: eventTypes,
+        },
+      })
       .sort({ time: -1 })
       .skip(skip)
       .limit(limit + 1)

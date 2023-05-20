@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { Event, ApiResponse } from '@events-app/types';
 
 import { UserEventsService } from './user-events.service';
@@ -8,11 +8,15 @@ import { PaginationDto } from './dto/search-query.dto';
 export class UserEventsController {
   constructor(private readonly userEventsService: UserEventsService) {}
 
-  @Get()
+  @Post()
   async findAll(
-    @Query() paginationQuery: PaginationDto
+    @Body() paginationDto: PaginationDto
   ): Promise<ApiResponse<Event>> {
-    const { skip, limit } = paginationQuery;
-    return this.userEventsService.findAll(Math.max(0, skip), limit);
+    const { skip, limit, eventTypes } = paginationDto;
+    return this.userEventsService.findAll({
+      skip: Math.max(0, skip),
+      limit,
+      eventTypes,
+    });
   }
 }
