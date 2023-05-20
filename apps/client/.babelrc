@@ -5,7 +5,12 @@
       {
         "runtime": "automatic"
       }
-    ]
+    ],
+    "@babel/preset-flow"
   ],
-  "plugins": [["styled-components", { "pure": true, "ssr": true }]]
+  "plugins": [
+    ["styled-components", { "pure": true, "ssr": true }],
+    ["@babel/plugin-syntax-flow"],
+    "@babel/plugin-transform-flow-strip-types"
+  ]
 }

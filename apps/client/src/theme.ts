@@ -5,7 +5,13 @@ import { colors } from './utils';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#222B36',
+      main: '#3A90E5',
+    },
+    warning: {
+      main: '#FFB547',
+    },
+    error: {
+      main: '#F06161',
     },
     background: {
       default: colors.custom.darkBlue,
@@ -19,7 +25,7 @@ const theme = createTheme({
           color: 'white',
           fontWeight: 400,
           fontSize: '14px',
-          lineHeight: '24px',
+          lineHeight: '22px',
         },
       },
     },
@@ -35,6 +41,9 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderBottom: '2px solid #3D4752',
+          'th:first-of-type': {
+            paddingLeft: '5rem',
+          },
         },
       },
     },
@@ -50,7 +59,24 @@ const theme = createTheme({
           },
         },
         selectIcon: {
-          color: '#919EAB',
+          color: colors.custom.grey,
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          height: '23px',
+          borderRadius: '8px',
+          padding: '3px 8px 4px 8px',
+        },
+        label: {
+          padding: '0',
+          fontSize: '11px',
+          lineHeight: '16px',
+          letterSpacing: '0.5px',
+          textTransform: 'uppercase',
+          color: 'white',
         },
       },
     },

@@ -9,7 +9,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { Event } from '@events-app/types';
-import { Skeleton } from '@mui/material';
+import { Chip, Skeleton, TableHead } from '@mui/material';
+import { colors } from '../../utils';
+import { severetyColors } from './styles';
 
 type Props = {
   rows: Event[];
@@ -50,6 +52,22 @@ const Table: FC<Props> = ({
   return (
     <TableContainer component={Paper}>
       <MuiTable sx={{ minWidth: 500 }} aria-label="custom pagination table">
+        <TableHead>
+          <TableRow>
+            <TableCell width={'30%'}>
+              <Typography>Event Type</Typography>
+            </TableCell>
+            <TableCell width={'20%'} align="left">
+              <Typography>Severety</Typography>
+            </TableCell>
+            <TableCell width={'25%'} align="left">
+              <Typography>User</Typography>
+            </TableCell>
+            <TableCell width={'25%'} align="left">
+              <Typography>Date</Typography>
+            </TableCell>
+          </TableRow>
+        </TableHead>
         <TableBody>
           {isLoading &&
             Array.from(Array(rowsPerPage)).map((_value, index) => (
@@ -82,20 +100,44 @@ const Table: FC<Props> = ({
           {!isLoading &&
             rows.map((row, index) => (
               <TableRow key={row.user.name + row.user.email + index.toString()}>
-                <TableCell component="th" scope="row">
-                  <Typography>{row.user.name}</Typography>
-                </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
-                  <Typography>{row.user.email}</Typography>
-                </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
+                <TableCell component="th" scope="row" width={'30%'}>
                   <Typography>{row.eventType}</Typography>
+                </TableCell>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  align="left"
+                  width={'20%'}
+                >
+                  <Typography>
+                    <Chip
+                      color={severetyColors[row.severity]}
+                      label={row.severity}
+                    />
+                  </Typography>
+                </TableCell>
+                <TableCell align="left" width={'25%'}>
+                  <Typography>{row.user.name}</Typography>
+                  <Typography
+                    sx={{
+                      color: colors.custom.grey,
+                      fontSize: '13px',
+                      lineHeight: '20px',
+                    }}
+                  >
+                    {row.user.email}
+                  </Typography>
+                </TableCell>
+                <TableCell align="left" width={'25%'}>
+                  <Typography>
+                    {new Date(row.time).toLocaleDateString()}
+                  </Typography>
                 </TableCell>
               </TableRow>
             ))}
           {!isLoading && emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
+              <TableCell colSpan={4} />
             </TableRow>
           )}
         </TableBody>
@@ -103,7 +145,7 @@ const Table: FC<Props> = ({
           <TableRow>
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
+              colSpan={4}
               count={!isLoading ? totalCount : 0}
               rowsPerPage={rowsPerPage}
               page={!isLoading ? page : 0}
