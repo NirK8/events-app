@@ -3,6 +3,7 @@ import { GlobalStyles, ThemeProvider } from '@mui/material';
 
 import theme, { globalStyles } from './theme';
 import EventsPage from './pages/Events';
+import { FiltersProvider } from './contexts/Filters';
 
 const queryClient = new QueryClient();
 
@@ -11,7 +12,9 @@ export function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <GlobalStyles styles={globalStyles} />
-        <EventsPage />
+        <FiltersProvider>
+          <EventsPage />
+        </FiltersProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

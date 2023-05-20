@@ -1,13 +1,13 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useQuery } from 'react-query';
 import { Box } from '@mui/material';
 
 import Table from '../components/Table/Table';
 import { getEvents } from '../utils';
+import { useFilters } from '../contexts/Filters';
 
 const EventsPage: FC = () => {
-  const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+  const { page, setPage, rowsPerPage, setRowsPerPage } = useFilters();
   const { data } = useQuery(['events', page, rowsPerPage], getEvents, {
     keepPreviousData: true,
   });

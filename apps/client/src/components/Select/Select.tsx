@@ -14,41 +14,34 @@ import InputLabel from '@mui/material/InputLabel';
 
 import { Chip, ChipsContainer } from './styles';
 import { colors, eventTypeTexts } from '../../utils';
-
-const names = Object.values(EventType);
+import { allEventTypes, useFilters } from '../../contexts/Filters';
 
 const Select: FC = () => {
-  const [personName, setPersonName] = React.useState<string[]>(names);
+  const { eventTypes, updateEventTypes, removeEventType } = useFilters();
 
-  const renderSelectValue: (value: string[]) => React.ReactNode = (values) => {
-    return (
-      <ChipsContainer>
-        {values.map((value) => (
-          <Chip
-            key={value}
-            clickable
-            label={eventTypeTexts[value as EventType]}
-            deleteIcon={
-              <CancelIcon onMouseDown={(event) => event.stopPropagation()} />
-            }
-            onDelete={(e) => handleDelete(e, value)}
-          />
-        ))}
-      </ChipsContainer>
-    );
-  };
-  const handleChange = (event: SelectChangeEvent<string[]>) => {
-    setPersonName(event.target.value as string[]);
+  const renderSelectValue: (value: string[]) => React.ReactNode = (values) => (
+    <ChipsContainer>
+      {values.map((value) => (
+        <Chip
+          key={value}
+          clickable
+          label={eventTypeTexts[value as EventType]}
+          deleteIcon={
+            <CancelIcon onMouseDown={(event) => event.stopPropagation()} />
+          }
+          onDelete={(e) => handleDelete(e, value as EventType)}
+        />
+      ))}
+    </ChipsContainer>
+  );
+
+  const handleChange = (event: SelectChangeEvent<EventType[]>) => {
+    updateEventTypes(event.target.value as EventType[]);
   };
 
-  const handleDelete = (e: React.MouseEvent, value: string) => {
+  const handleDelete = (e: React.MouseEvent, value: EventType) => {
     e.preventDefault();
-    setPersonName((current) => {
-      const copy = current.slice();
-      const indexOfDeletedValue = copy.indexOf(value);
-      copy.splice(indexOfDeletedValue, 1);
-      return copy;
-    });
+    removeEventType(value);
   };
   return (
     <FormControl variant="outlined" margin={'normal'}>
@@ -66,15 +59,15 @@ const Select: FC = () => {
         variant="outlined"
         id="events-select"
         multiple
-        value={personName}
+        value={eventTypes}
         onChange={handleChange}
         IconComponent={ArrowDropDownIcon}
         renderValue={renderSelectValue}
       >
-        {names.map((name) => (
-          <MenuItem key={name} value={name}>
-            <Checkbox checked={personName.includes(name)} />
-            <ListItemText primary={eventTypeTexts[name]} />
+        {allEventTypes.map((eventType) => (
+          <MenuItem key={eventType} value={eventType}>
+            <Checkbox checked={eventTypes.includes(eventType)} />
+            <ListItemText primary={eventTypeTexts[eventType]} />
           </MenuItem>
         ))}
       </MuiSelect>
