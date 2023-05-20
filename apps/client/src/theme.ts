@@ -100,10 +100,14 @@ const theme = createTheme({
     },
     MuiSelect: {
       styleOverrides: {
-        select: {
-          maxWidth: '400px',
-          minWidth: '400px',
-        },
+        select: ({ theme }) => ({
+          [theme.breakpoints.up('sm')]: {
+            width: '400px',
+          },
+          [theme.breakpoints.down('md')]: {
+            maxWidth: '250px',
+          },
+        }),
         icon: {
           color: colors.custom.grey,
         },
