@@ -7,10 +7,16 @@ import { getEvents } from '../utils';
 import { useFilters } from '../contexts/Filters';
 
 const EventsPage: FC = () => {
-  const { page, setPage, rowsPerPage, setRowsPerPage } = useFilters();
-  const { data } = useQuery(['events', page, rowsPerPage], getEvents, {
-    keepPreviousData: true,
-  });
+  const { page, setPage, rowsPerPage, setRowsPerPage, eventTypes } =
+    useFilters();
+  const { data } = useQuery(
+    ['events', page, rowsPerPage, eventTypes],
+    getEvents,
+    {
+      keepPreviousData: true,
+    }
+  );
+  console.log(data);
 
   const onPageChanged = (newPage: number) => {
     setPage(newPage);

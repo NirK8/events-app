@@ -56,7 +56,7 @@ const Table: FC<Props> = ({
         <TableTitle>Events Table</TableTitle>
         <Select />
       </TableHeading>
-      <MuiTable sx={{ minWidth: 500 }} aria-label="custom pagination table">
+      <MuiTable sx={{ minWidth: 500 }}>
         {/* Table Head */}
         <TableHead>
           <TableRow>
