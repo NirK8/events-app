@@ -2,15 +2,7 @@ FROM node:16
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
-
-ADD nx.json /usr/src/app/
-
-ADD tsconfig.base.json /usr/src/app/
-
-ADD babel.config.json /usr/src/app/
-
-ADD apps/client /usr/src/app/apps/client
+COPY . ./
 
 RUN npm install
 

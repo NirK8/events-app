@@ -4,7 +4,6 @@ import { ApiResponse, Event, EventType } from '@events-app/types';
 import axios from 'axios';
 
 const baseURL = process.env.NX_API_BASE_URL;
-console.log(baseURL);
 
 axios.defaults.baseURL = new URL('/api/v1', baseURL as string).href;
 

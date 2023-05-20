@@ -16,7 +16,6 @@ const EventsPage: FC = () => {
       keepPreviousData: true,
     }
   );
-  console.log(data);
 
   const onPageChanged = (newPage: number) => {
     setPage(newPage);

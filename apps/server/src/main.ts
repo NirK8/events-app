@@ -22,7 +22,6 @@ async function bootstrap() {
   );
   app.enableCors({
     origin: '*',
-    preflightContinue: false,
     allowedHeaders: '*',
   });
   app.setGlobalPrefix(globalPrefix);

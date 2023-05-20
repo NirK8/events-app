@@ -33,6 +33,8 @@ services:
   #   image: react-app
   #   build: 
   #     dockerfile: ./client.Dockerfile
+  #   environment:
+  #     - NX_API_BASE_URL=http://localhost:3333
   #   ports:
   #     - "4200:4200"
 
