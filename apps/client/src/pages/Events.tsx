@@ -32,7 +32,9 @@ const EventsPage: FC = () => {
         borderRadius: '8px',
         display: 'flex',
         justifyContent: 'center',
-        paddingTop: '5dvh',
+        height: '100vh',
+        boxSizing: 'border-box',
+        padding: '1rem',
       }}
     >
       <Table

@@ -51,94 +51,107 @@ const Table: FC<Props> = ({
   };
 
   return (
-    <TableContainer component={Paper}>
-      <TableHeading>
-        <TableTitle>Events Table</TableTitle>
-        <Select />
-      </TableHeading>
-      <MuiTable sx={{ minWidth: 500 }}>
-        {/* Table Head */}
-        <TableHead>
-          <TableRow>
-            <TableCell width={'30%'}>
-              <Typography>Event Type</Typography>
-            </TableCell>
-            <TableCell width={'20%'} align="left">
-              <Typography>Severety</Typography>
-            </TableCell>
-            <TableCell width={'25%'} align="left">
-              <Typography>User</Typography>
-            </TableCell>
-            <TableCell width={'25%'} align="left">
-              <Typography>Date</Typography>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        {/* Table Body */}
-        <TableBody>
-          {rows.map((row, index) => (
-            <TableRow key={row.user.name + row.user.email + index.toString()}>
-              <TableCell component="th" scope="row" width={'30%'}>
-                <Typography>{eventTypeTexts[row.eventType]}</Typography>
+    <Paper
+      sx={{
+        width: '100%',
+        height: 'fit-content',
+        borderRadius: '8px',
+      }}
+    >
+      <TableContainer component={Paper}>
+        <TableHeading>
+          <TableTitle>Events Table</TableTitle>
+          <Select />
+        </TableHeading>
+        <MuiTable sx={{ minWidth: 500 }}>
+          {/* Table Head */}
+          <TableHead>
+            <TableRow>
+              <TableCell width={'30%'}>
+                <Typography>Event Type</Typography>
               </TableCell>
-              <TableCell component="th" scope="row" align="left" width={'20%'}>
-                <Chip
-                  color={severetyColors[row.severity]}
-                  label={row.severity}
-                />
+              <TableCell width={'20%'} align="left">
+                <Typography>Severety</Typography>
               </TableCell>
-              <TableCell align="left" width={'25%'}>
-                <Typography>{row.user.name}</Typography>
-                <Typography
-                  sx={{
-                    color: colors.custom.grey,
-                    fontSize: '13px',
-                    lineHeight: '20px',
-                  }}
+              <TableCell width={'25%'} align="left">
+                <Typography>User</Typography>
+              </TableCell>
+              <TableCell width={'25%'} align="left">
+                <Typography>Date</Typography>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          {/* Table Body */}
+          <TableBody>
+            {rows.map((row, index) => (
+              <TableRow key={row.user.name + row.user.email + index.toString()}>
+                <TableCell component="th" scope="row" width={'30%'}>
+                  <Typography>{eventTypeTexts[row.eventType]}</Typography>
+                </TableCell>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  align="left"
+                  width={'20%'}
                 >
-                  {row.user.email}
-                </Typography>
-              </TableCell>
-              <TableCell align="left" width={'25%'}>
-                <Typography>
-                  {dayjs(row.time).format('YYYY/MM/DD | H:mm:ss')}
-                </Typography>
-              </TableCell>
-            </TableRow>
-          ))}
-          {/* Empty Space for the last page */}
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={4} />
-            </TableRow>
-          )}
-        </TableBody>
-        {/* Pagination footer */}
-        <TableFooter>
-          <TableRow
-            sx={{
-              borderBottom: `2px solid ${colors.custom.darkBlue}`,
-            }}
-          >
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
-              colSpan={4}
-              count={totalCount}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
-                },
-                native: true,
+                  <Chip
+                    color={severetyColors[row.severity]}
+                    label={row.severity}
+                  />
+                </TableCell>
+                <TableCell align="left" width={'25%'}>
+                  <Typography>{row.user.name}</Typography>
+                  <Typography
+                    sx={{
+                      color: colors.custom.grey,
+                      fontSize: '13px',
+                      lineHeight: '20px',
+                    }}
+                  >
+                    {row.user.email}
+                  </Typography>
+                </TableCell>
+                <TableCell align="left" width={'25%'}>
+                  <Typography>
+                    {dayjs(row.time).format('YYYY/MM/DD | H:mm:ss')}
+                  </Typography>
+                </TableCell>
+              </TableRow>
+            ))}
+            {/* Empty Space for the last page */}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={4} />
+              </TableRow>
+            )}
+          </TableBody>
+          {/* Pagination footer */}
+          <TableFooter>
+            <TableRow
+              sx={{
+                borderBottom: `2px solid ${colors.custom.darkBlue}`,
               }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </TableRow>
-        </TableFooter>
-      </MuiTable>
-    </TableContainer>
+            >
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                colSpan={4}
+                count={totalCount}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                SelectProps={{
+                  inputProps: {
+                    'aria-label': 'rows per page',
+                  },
+                  native: true,
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </TableRow>
+          </TableFooter>
+        </MuiTable>
+      </TableContainer>
+    </Paper>
   );
 };
 

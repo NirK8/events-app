@@ -56,7 +56,7 @@ const theme = createTheme({
     MuiTableRow: {
       styleOverrides: {
         root: ({ theme }) => ({
-          borderBottom: '2px solid #3D4752',
+          borderBottom: `2px solid ${colors.custom.lightBlueGrey}`,
           [theme.breakpoints.up('md')]: {
             'th:first-of-type': {
               paddingLeft: '5rem',
@@ -143,6 +143,7 @@ const theme = createTheme({
 
 export const globalStyles: GlobalStylesProps['styles'] = {
   body: {
+    margin: 0,
     fontFamily: 'Roboto, sans-serif',
     backgroundColor: colors.custom.darkBlueGrey,
   },
