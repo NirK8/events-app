@@ -51,12 +51,13 @@ const Table: FC<Props> = ({
   };
 
   return (
-    <TableContainer component={Paper}>
-      <TableHeading>
-        <TableTitle>Events Table</TableTitle>
-        <Select />
-      </TableHeading>
-      <MuiTable>
+    <TableContainer
+      component={Paper}
+      sx={{
+        maxHeight: '600px',
+      }}
+    >
+      <MuiTable stickyHeader>
         {/* Table Head */}
         <TableHead>
           <TableRow>

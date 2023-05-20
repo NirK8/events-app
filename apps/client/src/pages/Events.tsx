@@ -3,8 +3,10 @@ import { useQuery } from 'react-query';
 import { Box } from '@mui/material';
 
 import Table from '../components/Table/Table';
-import { getEvents } from '../utils';
+import { colors, getEvents } from '../utils';
 import { useFilters } from '../contexts/Filters';
+import { TableHeading, TableTitle } from '../components/Table/styles';
+import Select from '../components/Select/Select';
 
 const EventsPage: FC = () => {
   const { page, setPage, rowsPerPage, setRowsPerPage, eventTypes } =
@@ -30,10 +32,16 @@ const EventsPage: FC = () => {
       sx={{
         borderRadius: '8px',
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
-        padding: '1rem',
+        backgroundColor: colors.custom.darkBlue,
+        margin: '1rem',
       }}
     >
+      <TableHeading>
+        <TableTitle>Events Table</TableTitle>
+        <Select />
+      </TableHeading>
       <Table
         rows={data?.results || []}
         page={page}

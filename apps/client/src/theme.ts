@@ -65,10 +65,26 @@ const theme = createTheme({
         }),
       },
     },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          borderBottom: `2px solid ${colors.custom.lightBlueGrey}`,
+        },
+        footer: {
+          left: 0,
+          bottom: 0, // <-- KEY
+          zIndex: 2,
+          position: 'sticky',
+        },
+      },
+    },
     MuiTablePagination: {
       styleOverrides: {
         root: {
           color: 'white',
+          borderBottom: `2px solid ${colors.custom.darkBlue}`,
+          borderTop: `1px solid ${colors.custom.lightBlueGrey}`,
+          backgroundColor: colors.custom.darkBlue,
         },
         actions: {
           color: 'white',
