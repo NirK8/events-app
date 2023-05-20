@@ -38,6 +38,22 @@ const theme = createTheme({
         },
       },
     },
+    MuiTablePagination: {
+      styleOverrides: {
+        root: {
+          color: 'white',
+        },
+        actions: {
+          color: 'white',
+          '& .MuiButtonBase-root.Mui-disabled': {
+            color: colors.blueGrey[800],
+          },
+        },
+        selectIcon: {
+          color: '#919EAB',
+        },
+      },
+    },
   },
 });
 
