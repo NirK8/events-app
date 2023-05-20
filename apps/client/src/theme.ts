@@ -23,9 +23,17 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           color: 'white',
+        },
+        body1: {
+          color: 'white',
           fontWeight: 400,
           fontSize: '14px',
           lineHeight: '22px',
+        },
+        subtitle1: {
+          fontWeight: 400,
+          fontSize: '17px',
+          lineHeight: '28px',
         },
       },
     },
@@ -87,6 +95,46 @@ const theme = createTheme({
           letterSpacing: '0.5px',
           textTransform: 'uppercase',
           color: 'white',
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        select: {
+          maxWidth: '400px',
+          minWidth: '400px',
+        },
+        icon: {
+          color: colors.custom.grey,
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: '8px',
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'rgba(255, 255, 255, 0.23)',
+          },
+          '&:hover': {
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(255, 255, 255, 0.23)',
+            },
+          },
+          '&.Mui-focused': {
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(255, 255, 255, 0.23)',
+            },
+          },
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          '&.Mui-focused': {
+            color: colors.custom.grey,
+          },
         },
       },
     },

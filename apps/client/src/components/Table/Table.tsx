@@ -12,8 +12,9 @@ import { Event } from '@events-app/types';
 import { Chip, TableHead } from '@mui/material';
 import dayjs from 'dayjs';
 
-import { colors } from '../../utils';
-import { eventTypeTexts, severetyColors } from './styles';
+import { colors, eventTypeTexts } from '../../utils';
+import { TableHeading, TableTitle, severetyColors } from './styles';
+import Select from '../Select/Select';
 
 type Props = {
   rows: Event[];
@@ -51,7 +52,12 @@ const Table: FC<Props> = ({
 
   return (
     <TableContainer component={Paper}>
+      <TableHeading>
+        <TableTitle>Events Table</TableTitle>
+        <Select />
+      </TableHeading>
       <MuiTable sx={{ minWidth: 500 }} aria-label="custom pagination table">
+        {/* Table Head */}
         <TableHead>
           <TableRow>
             <TableCell width={'30%'}>
@@ -68,6 +74,7 @@ const Table: FC<Props> = ({
             </TableCell>
           </TableRow>
         </TableHead>
+        {/* Table Body */}
         <TableBody>
           {rows.map((row, index) => (
             <TableRow key={row.user.name + row.user.email + index.toString()}>
@@ -99,12 +106,14 @@ const Table: FC<Props> = ({
               </TableCell>
             </TableRow>
           ))}
+          {/* Empty Space for the last page */}
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell colSpan={4} />
             </TableRow>
           )}
         </TableBody>
+        {/* Pagination footer */}
         <TableFooter>
           <TableRow
             sx={{
@@ -112,7 +121,7 @@ const Table: FC<Props> = ({
             }}
           >
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+              rowsPerPageOptions={[5, 10, 25]}
               colSpan={4}
               count={totalCount}
               rowsPerPage={rowsPerPage}

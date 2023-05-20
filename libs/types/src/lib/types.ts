@@ -2,6 +2,7 @@ export enum EventType {
   OPEN_BROWSER = 'openBrowser',
   LOGOUT = 'logout',
   LOGIN = 'login',
+  LOGIN_FAIL = 'loginFail',
   FILE_DOWNLOAD = 'fileDownload',
   FILE_UPLOAD = 'fileUpload',
 }
