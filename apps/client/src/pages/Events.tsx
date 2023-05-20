@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { Box } from '@mui/material';
 
 import Table from '../components/Table/Table';
-import { colors, getEvents } from '../utils';
+import { getEvents } from '../utils';
 
 const EventsPage: FC = () => {
   const [page, setPage] = useState<number>(0);
@@ -27,8 +27,11 @@ const EventsPage: FC = () => {
   return (
     <Box
       sx={{
+        width: 'auto',
         borderRadius: '8px',
-        bgcolor: colors.custom.lightGrey,
+        display: 'flex',
+        justifyContent: 'center',
+        paddingTop: '5dvh',
       }}
     >
       <Table

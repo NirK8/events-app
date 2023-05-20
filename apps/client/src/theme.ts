@@ -29,11 +29,19 @@ const theme = createTheme({
         },
       },
     },
+    MuiTable: {
+      styleOverrides: {
+        root: {
+          maxWidth: '1340px',
+        },
+      },
+    },
     MuiTableContainer: {
       styleOverrides: {
         root: {
           boxShadow: 'none',
           borderRadius: '8px',
+          maxWidth: '1340px',
         },
       },
     },
@@ -84,7 +92,10 @@ const theme = createTheme({
 });
 
 export const globalStyles: GlobalStylesProps['styles'] = {
-  fontFamily: 'Roboto, sans-serif',
+  body: {
+    fontFamily: 'Roboto, sans-serif',
+    backgroundColor: colors.custom.darkBlueGrey,
+  },
 };
 
 export default theme;

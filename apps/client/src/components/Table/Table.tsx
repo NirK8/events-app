@@ -109,12 +109,10 @@ const Table: FC<Props> = ({
                   align="left"
                   width={'20%'}
                 >
-                  <Typography>
-                    <Chip
-                      color={severetyColors[row.severity]}
-                      label={row.severity}
-                    />
-                  </Typography>
+                  <Chip
+                    color={severetyColors[row.severity]}
+                    label={row.severity}
+                  />
                 </TableCell>
                 <TableCell align="left" width={'25%'}>
                   <Typography>{row.user.name}</Typography>
@@ -142,7 +140,11 @@ const Table: FC<Props> = ({
           )}
         </TableBody>
         <TableFooter>
-          <TableRow>
+          <TableRow
+            sx={{
+              borderBottom: `2px solid ${colors.custom.darkBlue}`,
+            }}
+          >
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={4}
