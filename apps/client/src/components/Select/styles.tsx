@@ -1,16 +1,23 @@
 import { Chip as MuiChip, styled } from '@mui/material';
 import { colors } from '../../utils';
 
-export const ChipsContainer = styled('div')({
-  maxWidth: '400px',
+export const ChipsContainer = styled('div')(({ theme }) => ({
+  [theme.breakpoints.up('sm')]: {
+    maxWidth: '400px',
+    paddingRight: '2rem',
+  },
+  [theme.breakpoints.down('md')]: {
+    // maxWidth: '400px',
+    maxWidth: 'calc(100% - 0.5rem)',
+  },
+  boxSizing: 'border-box',
   overflowX: 'scroll',
   '::-webkit-scrollbar': {
     display: 'none',
   },
   display: 'flex',
   gap: '.25rem',
-  paddingRight: '2rem',
-});
+}));
 
 export const Chip = styled(MuiChip)({
   display: 'flex',

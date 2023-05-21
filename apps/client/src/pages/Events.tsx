@@ -29,17 +29,22 @@ const EventsPage: FC = () => {
 
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         borderRadius: '8px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         backgroundColor: colors.custom.darkBlue,
-        margin: '1rem',
-      }}
+        [theme.breakpoints.up('sm')]: {
+          margin: '1rem',
+        },
+        [theme.breakpoints.down('md')]: {
+          margin: '.5rem',
+        },
+      })}
     >
       <TableHeading>
-        <TableTitle>Events Table</TableTitle>
+        <TableTitle variant="subtitle1">Events Table</TableTitle>
         <Select />
       </TableHeading>
       <Table

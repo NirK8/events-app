@@ -1,10 +1,15 @@
 import { SeveretyLevel } from '@events-app/types';
 import { ChipProps, Typography, styled as muiStyled } from '@mui/material';
-import styled from 'styled-components';
 
-export const TableHeading = muiStyled('div')({
-  padding: '1rem',
-});
+export const TableHeading = muiStyled('div')(({ theme }) => ({
+  [theme.breakpoints.up('sm')]: {
+    padding: '1rem',
+  },
+  [theme.breakpoints.down('md')]: {
+    padding: '0.25rem',
+  },
+  boxSizing: 'border-box',
+}));
 
 export const severetyColors: Record<SeveretyLevel, ChipProps['color']> = {
   [SeveretyLevel.LOW]: 'primary',
@@ -12,10 +17,9 @@ export const severetyColors: Record<SeveretyLevel, ChipProps['color']> = {
   [SeveretyLevel.HIGH]: 'error',
 };
 
-export const TableTitle = styled(Typography).attrs({
-  variant: 'subtitle1',
-})`
-  &.MuiTypography-root {
-    margin-bottom: 10px;
-  }
-`;
+export const TableTitle = muiStyled(Typography)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    textAlign: 'center',
+  },
+  marginBottom: '10px',
+}));

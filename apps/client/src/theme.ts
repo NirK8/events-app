@@ -121,8 +121,9 @@ const theme = createTheme({
             width: '400px',
           },
           [theme.breakpoints.down('md')]: {
-            maxWidth: '250px',
+            maxWidth: 'calc(100vw - 1.5rem)',
           },
+          boxSizing: 'border-box',
         }),
         icon: {
           color: colors.custom.grey,
