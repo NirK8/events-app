@@ -15,28 +15,28 @@ services:
     ports:
       - "27017:27017"
   
-  # server:
-  #   image: nest-server
-  #   build: 
-  #     dockerfile: ./server.Dockerfile
-  #   depends_on:
-  #     - mongo
-  #   environment:
-  #     - DATABASE_URI=mongodb://mongo:27017
-  #     - DB_NAME=mydb
-  #     - DB_USERNAME=nir
-  #     - DB_PASSWORD=nir
-  #   ports:
-  #     - "3333:3333"
+  server:
+    image: nest-server
+    build: 
+      dockerfile: ./server.Dockerfile
+    depends_on:
+      - mongo
+    environment:
+      - DATABASE_URI=mongodb://mongo:27017
+      - DB_NAME=mydb
+      - DB_USERNAME=nir
+      - DB_PASSWORD=nir
+    ports:
+      - "3333:3333"
 
-  # client:
-  #   image: react-app
-  #   build: 
-  #     dockerfile: ./client.Dockerfile
-  #   environment:
-  #     - NX_API_BASE_URL=http://localhost:3333
-  #   ports:
-  #     - "4200:4200"
+  client:
+    image: react-app
+    build: 
+      dockerfile: ./client.Dockerfile
+    environment:
+      - NX_API_BASE_URL=http://localhost:3333
+    ports:
+      - "4200:4200"
 
 volumes:
   db:
