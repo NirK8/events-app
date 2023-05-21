@@ -13,8 +13,7 @@ import { Chip, TableHead } from '@mui/material';
 import dayjs from 'dayjs';
 
 import { colors, eventTypeTexts } from '../../utils';
-import { TableHeading, TableTitle, severetyColors } from './styles';
-import Select from '../Select/Select';
+import { severetyColors } from './styles';
 
 type Props = {
   rows: Event[];
